@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
 
     const [enteredTitle , setEnteredTitle] = useState('')
     const [enteredAmount , setEnteredAmount] = useState('')
@@ -41,14 +41,14 @@ const ExpenseForm = () => {
 
         const expenseData = {
             title : enteredTitle,
-            amount : enteredAmount,
+            amount : +enteredAmount,
             date : new Date(enteredDate)
         }
 
-    console.log(expenseData)
-    setEnteredTitle('')
-    setEnteredAmount('')
-    setEnteredDate('')
+        props.onSaveExpenseData(expenseData)
+        setEnteredTitle('')
+        setEnteredAmount('')
+        setEnteredDate('')
     }
 
 
@@ -61,7 +61,7 @@ const ExpenseForm = () => {
             </div>
             <div>
                 <label htmlFor="" className='font-bold mb-[0.5rem] block'>Amount</label>
-                <input type="number" value={enteredAmount} onChange={amountChangeHandler} min='0.01' step='0.01' className=' p-[0.5rem] border-[1px] border-solid border-[#ccc] rounded-[6px] w-[20rem] max-w-full' />
+                <input type="number" value={enteredAmount} onChange={amountChangeHandler} min='1' step='1' className=' p-[0.5rem] border-[1px] border-solid border-[#ccc] rounded-[6px] w-[20rem] max-w-full' />
             </div>
             <div className='new expense control'>
                 <label htmlFor="" className='font-bold mb-[0.5rem] block'>Date</label>
@@ -69,8 +69,9 @@ const ExpenseForm = () => {
             </div>
         </div>
 
-        <div className='text-right cursor-pointer py-4 px-12 border-[1px] border-solid border-[#40005d] bg-[#40005d] text-white rounded-[12px] ml-[60%] w-[30vw] lg:w-[16vw] lg:ml-[70%] '>
-            <button type='submit' className="hover:bg-[#510674] border-[510674] ">Add Expense</button>
+        <div className='flex justify-end gap-4 py-4'>
+            <button type='button' onClick={props.onCancel} className='px-4 py-2 border rounded-[8px]'>Cancel</button>
+            <button type='submit' className='px-4 py-2 bg-[#40005d] text-white rounded-[8px] hover:bg-[#510674]'>Add Expense</button>
         </div>
     </form>
   )

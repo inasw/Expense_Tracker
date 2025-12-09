@@ -7,10 +7,10 @@ const ExpenseDate = (props) => {
   
   return (
    
-      <div className="text-white bg-[#2b2b2b] text-2xl border-[3px] px-5">
-        <div>{month}</div>
-        <div>{year}</div>
-        <div className=''>{day}</div>
+      <div className="flex flex-col justify-center items-center size-[5.5rem] border border-[#ececec] border-solid bg-[#2a2a2a] text-white rounded-[12px] ">
+        <div className="text-[0.95rem] font-bold">{month}</div>
+        <div className="text-[1.1rem]">{year}</div>
+        <div className='text-[1.3rem] font-bold'>{day}</div>
       </div>
     
   )
